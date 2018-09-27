@@ -1,0 +1,42 @@
+group 'com.api'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:2.0.0'
+    }
+}
+
+dependencies {
+    compile 'javax.servlet:jstl:1.2'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.0.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '5.0.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-orm', version: '5.0.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version: '5.0.5.RELEASE'
+    compile group: 'com.h2database', name: 'h2', version: '1.4.193'
+    compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.1.1'
+    compile "org.hibernate:hibernate-core:5.2.16.Final"
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+apply plugin: 'org.akhikhl.gretty'
+
+gretty {
+    httpPort=8088
+    contextPath = '/'
+}
